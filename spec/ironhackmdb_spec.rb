@@ -5,19 +5,37 @@ require_relative '../ironhackmdb'
 	    @tvshow = TVShow.new
 	    @tvshow.name = "Simpsons"
 	    @tvshow.own_rating = 3
-	    @tvshow.own_comments = "vaya me"
+	    @tvshow.own_comments = "vaya me de serie tio"
 		end
-		it "checks if an empty name is returning invalid" do
-			@tvshow.name = ""
-			expect(@tvshow.valid?).to eq (false)
+		describe "INITIAL values" do
+			it "Initial values are correct" do
+				expect(@tvshow.valid?).to eq(true)
+			end
 		end
-		it "The our_rating field should be present and between 0 and 10 (both included)" do
-			@tvshow.own_rating = 12
-			expect(@tvshow.valid?).to eq (false)
+		describe :name do
+			it "checks if an empty name is returning invalid" do
+				@tvshow.name = ""
+				expect(@tvshow.valid?).to be_falsy
+			end
 		end
-		it "The our_comments field should be present, with more than 100 characters but less than 10000" do
-			@tvshow.own_comments = "no me gusta"
-			expect(@tvshow.valid?).to eq (false)
+		describe :own_rating do
+			it "The our_rating field should be present and between 0 and 10 (both included)" do
+				@tvshow.own_rating = 11
+				expect(@tvshow.valid?).to be_falsy
+			end
+		end
+		describe :our_comments do
+			it "The our_comments field should be present, with more than 100 characters but less than 10000" do
+				@tvshow.own_comments = "no me va"
+				expect(@tvshow.valid?).to be_falsy
+			end
+		end
+		describe 'ImdbCheckings' do
+			describe :rating do
+				it "rating is a numeric value" do
+					expect(@tvshow.get_imdb_rating('Friends')).is_a? Integer 
+				end
+			end
 		end
 
 	end

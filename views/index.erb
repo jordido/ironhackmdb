@@ -1,16 +1,19 @@
 <h3>
 	Input your Movie
 </h3>
-<div id="movie_form">
+<div id="show_form">
 <form action='/' method='post'>
 	<ul>
 	<li>
-	Author 
-	<input name='artist'> 
+	Show
+	<input name='show'> 
 	</li>
 	<li>
-	Song...   
-	<input name='song'>
+	Comments   
+	<input name='comments'>
+	</li>
+	My rating   
+	<input name='rating'>
 	</li>
 	</div>
 	<div id ="selection">
@@ -28,9 +31,9 @@
 	List of Songs
 </h4>
 	<ul>
-		<% @list.each do |song| %>
+		<% @list.each do |show| %>
 		<li>
-			<%= song.join("\n") %>
+			<%= show.join("\n") %>
 		</li>
 		<% end %>
 	</ul>
