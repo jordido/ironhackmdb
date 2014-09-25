@@ -40,10 +40,21 @@ post '/' do
 		my_show = params[:show]
 		my_comments = params[:comments]
 		my_rating = params[:rating]
+	
 		myshow=TVShow.create(name: my_show, own_comments: my_comments, own_rating: my_rating.to_i)
-		myshow.save
-		@list = TVShow.all
-		erb :index
+		myshow.save 
+#		binding.pry
+		if myshow.valid? 
+			@list = TVShow.all
+			erb :index
+		else
+			@errors = ""
+			myshow.errors.each do |attr, err| 
+				@errors = @errors + "#{attr} - #{err} \n"
+			end
+			erb :error
+		end
+		
 	else
 	end	
 end
