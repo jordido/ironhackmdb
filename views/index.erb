@@ -1,0 +1,37 @@
+<h3>
+	Input your Movie
+</h3>
+<div id="movie_form">
+<form action='/' method='post'>
+	<ul>
+	<li>
+	Author 
+	<input name='artist'> 
+	</li>
+	<li>
+	Song...   
+	<input name='song'>
+	</li>
+	</div>
+	<div id ="selection">
+	<select action='add' name='action'>
+		<option value='add'>Add a song</option >
+	 	<option value='find'>Find a song by artist</option>
+	 	<option value='delete'>Delete a song by artist and name</option>
+ 	</select>
+	<input type="submit" value='Apply selected option' />
+	</div>
+</form>
+</div>
+<div id="listing">
+<h4>
+	List of Songs
+</h4>
+	<ul>
+		<% @list.each do |song| %>
+		<li>
+			<%= song.join("\n") %>
+		</li>
+		<% end %>
+	</ul>
+</div>
