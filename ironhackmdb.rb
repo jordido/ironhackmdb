@@ -2,6 +2,7 @@ require 'rubygems'
 require 'active_record'
 require 'sinatra'
 require 'sinatra/reloader'
+#require 'sinatra/flash'
 require 'date'
 require "pry"
 require 'imdb'
@@ -48,10 +49,11 @@ post '/' do
 			@list = TVShow.all
 			erb :index
 		else
-			@errors = ""
+			@errors = []
 			myshow.errors.each do |attr, err| 
-				@errors = @errors + "#{attr} - #{err} \n"
+				@errors << "#{attr} - #{err}"
 			end
+#			flash[:error] = @errors
 			erb :error
 		end
 		

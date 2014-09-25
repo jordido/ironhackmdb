@@ -1,5 +1,7 @@
 <h1>IronhackMDB</h1>
 <h3>Error creating show</h3>
 <div id="show_form">
-	<%= @errors %>
+	<% @errors.each do |error| %>
+	<%= error %>
+	<% end %>
 </div>
