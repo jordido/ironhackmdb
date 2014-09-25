@@ -1,6 +1,5 @@
-<h3>
-	Input your Movie
-</h3>
+<h1>IronhackMDB</h1>
+<h3>Input your Show, comments and rating</h3>
 <div id="show_form">
 <form action='/' method='post'>
 	<ul>
@@ -18,9 +17,9 @@
 	</div>
 	<div id ="selection">
 	<select action='add' name='action'>
-		<option value='add'>Add a song</option >
-	 	<option value='find'>Find a song by artist</option>
-	 	<option value='delete'>Delete a song by artist and name</option>
+		<option value='add'>Add a TV show</option >
+	 	<option value='find'>Find a show</option>
+	 	<option value='delete'>Delete a show</option>
  	</select>
 	<input type="submit" value='Apply selected option' />
 	</div>
@@ -28,12 +27,12 @@
 </div>
 <div id="listing">
 <h4>
-	List of Songs
+	List of TV shows
 </h4>
 	<ul>
 		<% @list.each do |show| %>
 		<li>
-			<%= show.join("\n") %>
+			<%= show.name %> 
 		</li>
 		<% end %>
 	</ul>
