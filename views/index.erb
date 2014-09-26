@@ -1,29 +1,38 @@
 <h1>IronhackMDB</h1>
+<div id="menu">
+	<ul>
+		<li><a href="./our_ranking">Our Ranking</a></li>
+		<li><a href="./imdb_ranking">Imdb Ranking</a></li>
+		<li><a href="./">Home</a></li>
+	</ul>
+</div>
 <h3>Input your Show, comments and rating</h3>
 <div id="show_form">
-<form action='/' method='post'>
-	<ul>
-	<li>
-	Show
-	<input name='show'> 
-	</li>
-	<li>
-	Comments   
-	<input name='comments'>
-	</li>
-	My rating   
-	<input name='rating'>
-	</li>
-	</div>
-	<div id ="selection">
-	<select action='add' name='action'>
-		<option value='add'>Add a TV show</option >
-	 	<option value='find'>Find a show</option>
-	 	<option value='delete'>Delete a show</option>
- 	</select>
-	<input type="submit" value='Apply selected option' />
-	</div>
-</form>
+	<form action='/' method='post'>
+		<ul id="input_data">
+			<li>
+			Show
+				<input name='show'> 
+				</li>
+			<li>
+				Comments   
+				<input name='comments'>
+			</li>
+				My rating   
+				<input name='rating'>
+			</li>
+		</ul>
+		
+		<div id ="selection">
+			<select action='add' name='action'>
+				<option value='add'>Add a TV show</option >
+			 	<option value='find'>Find a show</option>
+			 	<option value='delete'>Delete a show</option>
+		 	</select>
+
+			<input type="submit" value='Apply selected option' />
+		</div>
+	</form>
 </div>
 <div id="listing">
 <h4>
@@ -31,9 +40,11 @@
 </h4>
 	<ul>
 		<% @list.each do |show| %>
-		<li>
-			<%= show.name %> 
-		</li>
+			<li>
+				<%= show.name %> 
+				<%= show.own_rating %> 
+				<%= show.own_comments %> 
+			</li>
 		<% end %>
 	</ul>
 </div>

@@ -1,0 +1,24 @@
+<h1>IronhackMDB</h1>
+<h3>Imdb ranking of our TV shows</h3>
+
+<div id="listing">
+<h4>
+	List of TV shows
+</h4>
+	<ul>
+		<% @list.each do |show, imdb_data| %>
+			<li>
+				Show: 
+				<%= show.name %> 
+				Rating: 
+				<%= imdb_data[0] %> 
+				Seasons:
+				<%= imdb_data[1] %>
+				Link:
+				<a href='\"'<%= imdb_data[2] %>'\"'</a>
+				<img src= <%= imdb_data[3] %> />
+				
+			</li>
+		<% end %>
+	</ul>
+</div>

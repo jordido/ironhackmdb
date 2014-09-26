@@ -1,0 +1,17 @@
+<h1>IronhackMDB</h1>
+<h3>Your TV shows ranking</h3>
+
+<div id="listing">
+<h4>
+	List of TV shows
+</h4>
+	<ul>
+		<% @list.each do |show| %>
+			<li>
+				<%= show.name %> 
+				<%= show.own_rating %> 
+				<%= show.own_comments %> 
+			</li>
+		<% end %>
+	</ul>
+</div>

@@ -22,11 +22,36 @@ class TVShow < ActiveRecord::Base
 	validates :own_rating, numericality: true, inclusion: {in: (0..10)}
 	validates :own_comments, length: {in: 10..10000}	
 
-	private
 
-	def get_imdb_rating (name)
-		rating = Imdb::Search.new(name).movies.first.rating
+	def get_imdb_data  #returns array of four elements with Imdb info
+		imdb_movie = Imdb::Search.new(name).movies.first
+		imdb_rating = imdb_movie.rating
+		imdb_id = imdb_movie.id
+		imdb_serie = Imdb::Serie.new(imdb_id)
+		imdb_seasons = imdb_serie.seasons.count
+		imdb_link = imdb_serie.url
+		imdb_picture = imdb_movie.poster
+		# imdb_seasons = imdb_movie.seasons
+		# imdb_link = imdb_movie.link
+		# imdb_picture = imdb_movie.picture
+		return [imdb_rating, imdb_seasons, imdb_link, imdb_picture]
 	end
+
+	# def get_imdb_rating (name)
+	# 	imdb_rating = Imdb::Search.new(name).movies.first.rating
+	# end
+
+	# def get_imdb_seasons (name)
+	# 	rating = Imdb::Search.new(name).movies.first.seasons
+	# end
+
+	# def get_imdb_link (name)
+	# 	rating = Imdb::Search.new(name).movies.first.rating
+	# end
+
+	# def get_imdb_link (picture)
+	# 	rating = Imdb::Search.new(name).movies.first.rating
+	# end
 
 end
 
@@ -35,6 +60,20 @@ get '/' do
 	@list = TVShow.all
 	erb :index  
 end
+
+get '/our_ranking' do
+	@list =TVShow.all
+	erb :our_ranking
+end
+
+get '/imdb_ranking' do
+	@list = []
+	TVShow.all.each do |tvshow|
+		@list << [tvshow, tvshow.get_imdb_data ]
+	end
+	erb :imdb_ranking
+end
+
 
 post '/' do
 	if params[:action] == 'add'
