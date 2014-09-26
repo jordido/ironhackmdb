@@ -5,16 +5,25 @@
 		<h2>Your TV shows ranking</h2>
 </header>
 </section>
-<section id="content">
 
-	<ul class="block">
-		<% @list.each do |show| %>
+<section id = "content">
+	<ul class="column">
+		<% @list.each do |show| %>	
 			<li>
+			<section class="block">
+				<h3>				
 				<%= show.name %> 
+				</h3>
+				<p>
+				<b>Rating: </b>
 				<%= show.own_rating %> 
-				<%= show.own_comments %> 
+				<br>
+				<b>Comments: </b>
+				<br>
+				<%= show.own_comments %>
+				<br>	
+			</section>		
 			</li>
 		<% end %>
 	</ul>
 </section>
-</body>

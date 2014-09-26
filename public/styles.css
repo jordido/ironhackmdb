@@ -221,6 +221,18 @@ nav ul li.subscribe a {
 	-webkit-border-radius: 10px;
 }
 
+#content .short-block {
+	height: 145px;
+	font-size: 1em;
+	margin-right: 10px; /*Creates the 10px gap between each column*/
+	padding: 20px;
+	background: #d6a965;
+/* curved border radius */
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	
+	}
+
 #content .block a {
 	color: #FFF;
 	}

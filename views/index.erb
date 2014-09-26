@@ -31,14 +31,23 @@
 	</form>
 </section>
 
-<section id="content">
-
-	<ul class="block">
-		<% @list.each do |show| %>
+<section id = "content">
+	<ul class="column">
+		<% @list.each do |show| %>	
 			<li>
+			<section class="short-block">
+				<h3>				
 				<%= show.name %> 
+				</h3>
+				<p>
+				<b>Rating: </b>
 				<%= show.own_rating %> 
-				<%= show.own_comments %> 
+				<br>
+				<b>Comments: </b>
+				<br>
+				<%= show.own_comments %>
+				<br>	
+			</section>		
 			</li>
 		<% end %>
 	</ul>

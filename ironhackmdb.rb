@@ -3,7 +3,7 @@ require 'active_record'
 require 'sinatra'
 require 'sinatra/reloader'
 #require 'sinatra/flash'
-require 'date'
+# require 'date'
 #require "pry"
 require 'imdb'
 #require_relative 'List'
@@ -26,13 +26,12 @@ class TVShow < ActiveRecord::Base
 
 
 	def get_imdb_data  #returns array of four elements with Imdb info
-		movie = Imdb::Search.new(name).movies.first
-		serie = Imdb::Serie.new(movie.id)
-		return [movie.rating, serie.seasons.count, serie.url, movie.poster]
+			movie = Imdb::Search.new(name).movies.first		
+			serie = Imdb::Serie.new(movie.id)
+			return [movie.rating, serie.seasons.count, serie.url, movie.poster]
 	end
 
 end
-
 
 get '/' do
 	@list = TVShow.all
@@ -55,11 +54,7 @@ end
 
 post '/' do
 	if params[:action] == 'add'
-		my_show = params[:show]
-		my_comments = params[:comments]
-		my_rating = params[:rating]
-	
-		myshow=TVShow.create(name: my_show, own_comments: my_comments, own_rating: my_rating.to_i)
+		myshow=TVShow.create(name: params[:show], own_comments: params[:comments], own_rating: params[:rating].to_i)
 		myshow.save 
 #		binding.pry
 		if myshow.valid? 
@@ -72,10 +67,9 @@ post '/' do
 			end
 			erb :error
 		end
-		
-	else
-	end	
-end
+	end
+end	
+
 
 
 __END__
