@@ -33,7 +33,7 @@ require_relative '../ironhackmdb'
 		describe 'ImdbCheckings' do
 			describe :rating do
 				it "rating is a numeric value" do
-					expect(@tvshow.get_imdb_rating('Friends')).is_a? Integer 
+					expect(@tvshow.get_imdb_rating('')).is_a? Integer 
 				end
 			end
 		end

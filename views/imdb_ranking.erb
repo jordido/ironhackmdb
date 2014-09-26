@@ -1,24 +1,30 @@
-<h1>IronhackMDB</h1>
-<h3>Imdb ranking of our TV shows</h3>
+<%= erb :header %>
 
-<div id="listing">
-<h4>
-	List of TV shows
-</h4>
-	<ul>
+<section id="intro">
+<header>
+		<h2>Imdb ranking of our TV shows</h2>
+</header>
+</section>
+
+<section id = "content">
+	<ul class="column">
 		<% @list.each do |show, imdb_data| %>
-			<li>
-				Show: 
+			<li class="block">
+				<h3>				
 				<%= show.name %> 
-				Rating: 
+				</h3>
+				<p>
+				<b>Rating: </b>
 				<%= imdb_data[0] %> 
-				Seasons:
+				</br>
+				<b>Seasons: </b>
 				<%= imdb_data[1] %>
-				Link:
-				<a href='\"'<%= imdb_data[2] %>'\"'</a>
-				<img src= <%= imdb_data[3] %> />
-				
+				</br>
+				<b>Link: </b>
+				<a href='\"'<%= imdb_data[2]%>'\"'> </a>
+				</p>
+				<img src= <%= imdb_data[3] %> />				
 			</li>
 		<% end %>
 	</ul>
-</div>
+</section>

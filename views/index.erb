@@ -1,13 +1,9 @@
-<h1>IronhackMDB</h1>
-<div id="menu">
-	<ul>
-		<li><a href="./our_ranking">Our Ranking</a></li>
-		<li><a href="./imdb_ranking">Imdb Ranking</a></li>
-		<li><a href="./">Home</a></li>
-	</ul>
-</div>
-<h3>Input your Show, comments and rating</h3>
-<div id="show_form">
+<%= erb :header %>
+
+<section id="intro">
+	<header>
+		<h2>Input your Show, comments and rating</h2>
+	</header>
 	<form action='/' method='post'>
 		<ul id="input_data">
 			<li>
@@ -33,12 +29,11 @@
 			<input type="submit" value='Apply selected option' />
 		</div>
 	</form>
-</div>
-<div id="listing">
-<h4>
-	List of TV shows
-</h4>
-	<ul>
+</section>
+
+<section id="content">
+
+	<ul class="block">
 		<% @list.each do |show| %>
 			<li>
 				<%= show.name %> 
@@ -47,4 +42,4 @@
 			</li>
 		<% end %>
 	</ul>
-</div>
+</section>

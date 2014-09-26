@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 #require 'sinatra/flash'
 require 'date'
-require "pry"
+#require "pry"
 require 'imdb'
 #require_relative 'List'
 set :port, 3000
@@ -15,6 +15,8 @@ ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
   database: 'ironhackmdb.sqlite'
 )
+
+
 class TVShow < ActiveRecord::Base
 		
   validates_presence_of :name, :own_rating, :own_comments   
@@ -24,34 +26,10 @@ class TVShow < ActiveRecord::Base
 
 
 	def get_imdb_data  #returns array of four elements with Imdb info
-		imdb_movie = Imdb::Search.new(name).movies.first
-		imdb_rating = imdb_movie.rating
-		imdb_id = imdb_movie.id
-		imdb_serie = Imdb::Serie.new(imdb_id)
-		imdb_seasons = imdb_serie.seasons.count
-		imdb_link = imdb_serie.url
-		imdb_picture = imdb_movie.poster
-		# imdb_seasons = imdb_movie.seasons
-		# imdb_link = imdb_movie.link
-		# imdb_picture = imdb_movie.picture
-		return [imdb_rating, imdb_seasons, imdb_link, imdb_picture]
+		movie = Imdb::Search.new(name).movies.first
+		serie = Imdb::Serie.new(movie.id)
+		return [movie.rating, serie.seasons.count, serie.url, movie.poster]
 	end
-
-	# def get_imdb_rating (name)
-	# 	imdb_rating = Imdb::Search.new(name).movies.first.rating
-	# end
-
-	# def get_imdb_seasons (name)
-	# 	rating = Imdb::Search.new(name).movies.first.seasons
-	# end
-
-	# def get_imdb_link (name)
-	# 	rating = Imdb::Search.new(name).movies.first.rating
-	# end
-
-	# def get_imdb_link (picture)
-	# 	rating = Imdb::Search.new(name).movies.first.rating
-	# end
 
 end
 
@@ -92,7 +70,6 @@ post '/' do
 			myshow.errors.each do |attr, err| 
 				@errors << "#{attr} - #{err}"
 			end
-#			flash[:error] = @errors
 			erb :error
 		end
 		
