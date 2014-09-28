@@ -8,24 +8,22 @@
 
 <section id = "content">
 	<ul class="column">
-		<% @list.each do |show, imdb_data| %>	
 			<li>
 			<section class="block">
 				<h3>				
-				<%= show.name %> 
+				<%= @show_info[5] %> 
 				</h3>
 				<p>
 				<b>Rating: </b>
-				<%= imdb_data[0] %> 
+				<%= @show_info[0] %> 
 				<b>   Seasons: </b>
-				<%= imdb_data[1] %>
+				<%= @show_info[1] %>
 				</br>
-				<a href=<%= imdb_data[2]%>>Link to: <%= show.name %></a>
-				<a href=<%= imdb_data[3]%>>Our Link to: <%= show.name %></a>
+				<a href=<%= @show_info[2]%>>Imdb Link to: <%= @show_info[5] %></a>
+				<a href=<%= @show_info[3]%>>Our Link to: <%= @show_info[5] %></a>
 				</p>
-				<img src= <%= imdb_data[4] %> />		
+				<img src= <%= @show_info[4]%>/>		
 			</section>		
 			</li>
-		<% end %>
 	</ul>
 </section>

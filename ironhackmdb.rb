@@ -28,8 +28,17 @@ class TVShow < ActiveRecord::Base
 	def get_imdb_data  #returns array of four elements with Imdb info
 			movie = Imdb::Search.new(name).movies.first		
 			serie = Imdb::Serie.new(movie.id)
-			return [movie.rating, serie.seasons.count, serie.url, movie.poster]
+			my_tvshow_link = "/tv_shows/" + movie.id.to_s
+			return [movie.rating, serie.seasons.count, serie.url, my_tvshow_link, movie.poster]
 	end
+
+	def data_by_id (tvshow_id)
+			movie = Imdb::Movie.new(tvshow_id)
+			serie = Imdb::Serie.new(tvshow_id)
+			my_tvshow_link = "/tv_shows/" + movie.id.to_s
+			return [movie.rating, serie.seasons.count, serie.url, my_tvshow_link, movie.poster, movie.title]
+	end
+
 
 end
 
@@ -51,6 +60,10 @@ get '/imdb_ranking' do
 	erb :imdb_ranking
 end
 
+get '/tv_shows/:tv_shows_id' do
+		@show_info = TVShow.new.data_by_id(params[:tv_shows_id])
+	erb :tv_shows
+end
 
 post '/' do
 	if params[:action] == 'add'
